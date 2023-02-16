@@ -1,0 +1,4 @@
+tensorflow~=2.11.0
+torch~=1.13.1
+matplotlib~=3.5.3
+notebook~=6.5.2
