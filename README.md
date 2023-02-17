@@ -10,6 +10,8 @@ We used version 2.11.0 of Tensorflow and version 1.13.1 of PyTorch.
 
 Run `pip install -r requirements.txt` before running the code.
 
+To launch Tensorboard for training monitoring, run `tensorboard --logdir "logs/fit"` in the root directory of the project.
+
 ## Dataset
 
 We used the [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist) dataset for this project. It contains 60,000 training images and 10,000 test images. Each image is a 28x28 grayscale image, associated with a label from 10 classes. The dataset is available in both libraries.
