@@ -1,6 +1,6 @@
-numpy~=1.21.6
 tensorflow~=2.11.0
 torch~=1.13.1
 matplotlib~=3.5.3
 notebook~=6.5.2
 torchvision~=0.14.1
+wandb~=0.13.10
