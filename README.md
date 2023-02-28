@@ -3,14 +3,41 @@
 Course: Neural Networks @ FIIT STU\
 Authors: Viktor Modroczký & Michaela Hanková
 
-## Versions
+## Training and Testing Environment
 
-Python 3.7.9 has been used for this project for compatibility reasons.
-We used version 2.11.0 of Tensorflow and version 1.13.1 of PyTorch.
+We used Juyper Notebooks on Kaggle for training and testing. Kaggle provides free GPU resources for sufficient time. Our Kaggle notebooks were configured to use the NVDIA Tesla P100 graphics card. At the time of writing, the Python version on Kaggle was 3.7.12.
 
-Run `pip install -r requirements.txt` before running the code.
+If you want to run the notebooks on your own machine, you need to build a Docker image. The Dockerfile is provided in the root directory of this repository. The image is based on the [python:3.7.12-slim](https://hub.docker.com/layers/library/python/3.7.12-slim/images/sha256-f16187eda47e7b66ab1238ff562223da599c78d7b494d7fbed329b56c5f41144) Docker image. Our image contains all the necessary Python packages for running the notebooks.
 
-To launch Tensorboard for training monitoring, run `tensorboard --logdir "logs/fit"` in the root directory of the project.
+The following commands have to be run from the root directory of this repository.
+
+To build the image, run the following command:
+
+```bash
+docker build -t nn-project-1 .
+```
+
+To run the image, run the following command:
+
+Linux:
+
+```bash
+docker run --rm -it -p 8888:8888 -v $(pwd)/src:/mlp/src nn-project-1
+```
+
+Windows CMD:
+
+```bash
+docker run --rm -it -p 8888:8888 -v %cd%/src:/mlp/src nn-project-1
+```
+
+Windows PowerShell:
+
+```bash
+docker run --rm -it -p 8888:8888 -v ${PWD}/src:/mlp/src nn-project-1
+```
+
+The image will start a Jupyter Notebook server. You can access it from the link provided in the output of the command.
 
 ## Dataset
 
@@ -18,15 +45,61 @@ We used the [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist) da
 
 ## Model Architecture and Hyperparameters
 
-The model is a Multi-Layer Perceptron. It has 784 inputs which represent the pixels of the image. The output layer has 10 neurons, one for each class. The activation function is ReLU for the hidden layers and Softmax for the output layer. The loss function is Sparse Categorical Crossentropy. The optimizer is Stochastic Gradient Descent with a learning rate of 0.001.
+The model is a Multi-Layer Perceptron. It has 784 inputs which represent the pixels of the image. Inputs are normalized to the range [0, 1]. There are 4 hidden layers and an output layer with 10 neurons, one for each class. Each hidden layer uses the ReLU activation function. We used Stochastic Gradient Descent with momentum as the optimizer. The validation split is 20%. The model is implemented in both Tensorflow and PyTorch.
 
-## Tensorflow Implementation
+To tune the hyperparameters we used the Bayesian Optimization algorithm in the Weights & Biases library. During tuning, the network was trained 50 times. The goal was to minimize the validation loss. The metrics we monitored were the training loss, validation loss, training accuracy, and validation accuracy. We defined the following search space for the hyperparameters:
 
-TODO
+| Hyperparameter | Range |
+|----------------|-------|
+| Learning rate | min: 0.0001, max: 0.1 |
+| Momentum | min: 0.0, max: 0.9 |
+| Batch size | [16, 32, 64, 128, 256] |
+| Number of epochs | min: 20, max: 200 |
+| Units in first hidden layer | min: 256, max: 512 |
+| Units in second hidden layer | min: 128, max: 256 |
+| Units in third hidden layer | min: 128, max: 256 |
+| Units in fourth hidden layer | min: 32, max: 64 |
 
-## PyTorch Implementation
+The hyperparameters we tuned are the learning rate, momentum, batch size, number of epochs, and the number of units in each hidden layer. The following table shows the best values for the hyperparameters.
 
-TODO
+| Hyperparameter | Value |
+|----------------|-------|
+| Learning rate | 0.058011500502312935 |
+| Momentum | 0.04032910145774373 |
+| Batch size | 128 |
+| Number of epochs | 20 |
+| Units in first hidden layer | 359 |
+| Units in second hidden layer | 179 |
+| Units in third hidden layer | 137 |
+| Units in fourth hidden layer | 64 |
+
+## Implementation
+
+Both implementations are available in the `src` directory. The implementations are in Jupyter Notebooks. The notebook named `tf-mlp-tuning.ipynb` contains hyperparameter tuning performed on the Tensorflow implementation. The notebook named `tf-mlp-tuned.ipynb` contains the final model implemented in Tensorflow. The notebook named `torch-mlp-tuned.ipynb` contains the final model implemented in PyTorch. Both are trained with the best hyperparameters found during tuning. Both models use the Sequential API in their respective libraries.
+
+### Tensorflow Implementation
+
+The loss function used is Sparse Categorical Crossentropy. The activation function used in the output layer is the Softmax function. The training accuracy reached 0.9199 and the validation accuracy reached 0.8917. The training loss reached 0.2149 and the validation loss reached 0.3024. The model has an accuracy of 0.8830 on the test dataset. More metrics are available in the `tf-mlp-tuned.ipynb` notebook.
+
+The following graph shows the training and validation loss and accuracy during training.
+
+![Tensorflow training and validation loss and accuracy](./images/tf-acc-loss.png)
+
+The following graph shows the confusion matrix for the test dataset.
+
+![Tensorflow confusion matrix](./images/tf-matrix.png)
+
+### PyTorch Implementation
+
+The loss function used is Negative Log Likelihood. The activation function used in the output layer is the LogSoftmax function. The training accuracy reached 0.9031 and the validation accuracy reached 0.8883. The training loss reached 0.2597 and the validation loss reached 0.3064. The model has an accuracy of 0.8799 on the test dataset. More metrics are available in the `torch-mlp-tuned.ipynb` notebook.
+
+The following graph shows the training and validation loss and accuracy during training.
+
+![PyTorch training and validation loss and accuracy](./images/torch-acc-loss.png)
+
+The following graph shows the confusion matrix for the test dataset.
+
+![PyTorch confusion matrix](./images/torch-matrix.png)
 
 ## Comparison
 

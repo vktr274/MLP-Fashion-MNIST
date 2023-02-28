@@ -3,4 +3,6 @@ torch~=1.13.1
 matplotlib~=3.5.3
 notebook~=6.5.2
 torchvision~=0.14.1
+scikit-learn~=1.0.2
 wandb~=0.13.10
+notebook~=6.5.2
