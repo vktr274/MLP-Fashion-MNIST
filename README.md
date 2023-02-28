@@ -47,7 +47,7 @@ We used the [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist) da
 
 The model is a Multi-Layer Perceptron. It has 784 inputs which represent the pixels of the image. Inputs are normalized to the range [0, 1]. There are 4 hidden layers and an output layer with 10 neurons, one for each class. Each hidden layer uses the ReLU activation function. We used Stochastic Gradient Descent with momentum as the optimizer. The validation split is 20%. The model is implemented in both Tensorflow and PyTorch.
 
-To tune the hyperparameters we used the Bayesian Optimization algorithm in the Weights & Biases library. During tuning, the network was trained 50 times. The goal was to minimize the validation loss. The metrics we monitored were the training loss, validation loss, training accuracy, and validation accuracy. We defined the following search space for the hyperparameters:
+To tune the hyperparameters we used the Bayesian Optimization algorithm in the Weights & Biases library. During tuning, the network was trained 50 times. The goal was to minimize the validation loss. The metrics we monitored were the training loss, validation loss, training accuracy, and validation accuracy. The hyperparameters we tuned are the learning rate, momentum, batch size, number of epochs, and the number of units in each hidden layer. We defined the following search space for the hyperparameters:
 
 | Hyperparameter | Range |
 |----------------|-------|
@@ -60,7 +60,7 @@ To tune the hyperparameters we used the Bayesian Optimization algorithm in the W
 | Units in third hidden layer | min: 128, max: 256 |
 | Units in fourth hidden layer | min: 32, max: 64 |
 
-The hyperparameters we tuned are the learning rate, momentum, batch size, number of epochs, and the number of units in each hidden layer. The following table shows the best values for the hyperparameters.
+The following table shows the best values for the hyperparameters.
 
 | Hyperparameter | Value |
 |----------------|-------|
