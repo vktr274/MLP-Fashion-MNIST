@@ -58,20 +58,20 @@ To tune the hyperparameters we used the Bayesian Optimization algorithm in the W
 | Units in first hidden layer | min: 256, max: 512 |
 | Units in second hidden layer | min: 128, max: 256 |
 | Units in third hidden layer | min: 128, max: 256 |
-| Units in fourth hidden layer | min: 32, max: 64 |
+| Units in fourth hidden layer | min: 32, max: 128 |
 
 The following table shows the best values for the hyperparameters.
 
 | Hyperparameter | Value |
 |----------------|-------|
-| Learning rate | 0.058011500502312935 |
-| Momentum | 0.04032910145774373 |
-| Batch size | 128 |
-| Number of epochs | 20 |
-| Units in first hidden layer | 359 |
-| Units in second hidden layer | 179 |
-| Units in third hidden layer | 137 |
-| Units in fourth hidden layer | 64 |
+| Learning rate | 0.023615358865991583 |
+| Momentum | 0.06432719692244611 |
+| Batch size | 64 |
+| Number of epochs | 21 |
+| Units in first hidden layer | 456 |
+| Units in second hidden layer | 150 |
+| Units in third hidden layer | 132 |
+| Units in fourth hidden layer | 68 |
 
 ## Implementation
 
@@ -79,7 +79,7 @@ Both implementations are available in the `src` directory. The implementations a
 
 ### Tensorflow Implementation
 
-The loss function used is Sparse Categorical Crossentropy. The activation function used in the output layer is the Softmax function. The training accuracy reached 0.9199 and the validation accuracy reached 0.8917. The training loss reached 0.2149 and the validation loss reached 0.3024. The model has an accuracy of 0.8830 on the test dataset. More metrics are available in the `tf-mlp-tuned.ipynb` notebook.
+The loss function used is Sparse Categorical Crossentropy. The activation function used in the output layer is the Softmax function. The training accuracy reached 0.9243 and the validation accuracy reached 0.8870. The training loss reached 0.2050 and the validation loss reached 0.3174. The model has an accuracy of 0.8787 on the test dataset. More metrics are available in the `tf-mlp-tuned.ipynb` notebook.
 
 The following graph shows the training and validation loss and accuracy during training.
 
@@ -91,7 +91,7 @@ The following graph shows the confusion matrix for the test dataset.
 
 ### PyTorch Implementation
 
-The loss function used is Negative Log Likelihood. The activation function used in the output layer is the LogSoftmax function. The training accuracy reached 0.9031 and the validation accuracy reached 0.8883. The training loss reached 0.2597 and the validation loss reached 0.3064. The model has an accuracy of 0.8799 on the test dataset. More metrics are available in the `torch-mlp-tuned.ipynb` notebook.
+The loss function used is Negative Log Likelihood. The activation function used in the output layer is the LogSoftmax function. The training accuracy reached 0.9052 and the validation accuracy reached 0.8854. The training loss reached 0.2568 and the validation loss reached 0.3240. The model has an accuracy of 0.8736 on the test dataset. More metrics are available in the `torch-mlp-tuned.ipynb` notebook.
 
 The following graph shows the training and validation loss and accuracy during training.
 
