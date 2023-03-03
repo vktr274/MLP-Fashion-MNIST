@@ -91,7 +91,7 @@ The following graph shows the confusion matrix for the test dataset.
 
 ### PyTorch Implementation
 
-The loss function used is Negative Log Likelihood. The activation function used in the output layer is the LogSoftmax function. The training accuracy reached 0.9059 and the validation accuracy reached 0.8773. The training loss reached 0.2557 and the validation loss reached 0.3336. The model has an accuracy of 0.8696 on the test dataset. More metrics are available in the `torch-mlp-tuned.ipynb` notebook.
+The loss function used is Negative Log Likelihood. The activation function used in the output layer is the LogSoftmax function. The training accuracy reached 0.9091 and the validation accuracy reached 0.8892. The training loss reached 0.2435 and the validation loss reached 0.3172. The model has an accuracy of 0.8821 on the test dataset. More metrics are available in the `torch-mlp-tuned.ipynb` notebook.
 
 The following graph shows the training and validation loss and accuracy during training.
 
