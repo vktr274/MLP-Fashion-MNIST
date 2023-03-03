@@ -43,11 +43,13 @@ The image will start a Jupyter Notebook server. You can access it from the link 
 
 We used the [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist) dataset for this project. It contains 60,000 training images and 10,000 test images. Each image is a 28x28 grayscale image, associated with a label from 10 classes. The dataset is available in both libraries.
 
-## Model Architecture and Hyperparameters
+## Model Architecture
 
 The model is a Multi-Layer Perceptron. It has 784 inputs which represent the pixels of the image. Inputs are normalized to the range [0, 1]. There are 4 hidden layers and an output layer with 10 neurons, one for each class. Each hidden layer uses the ReLU activation function. We used Stochastic Gradient Descent with momentum as the optimizer. The validation split is 20%. The model is implemented in both Tensorflow and PyTorch.
 
-To tune the hyperparameters we used the Bayesian Optimization algorithm in the Weights & Biases library. During tuning, the network was trained 50 times. The goal was to minimize the validation loss. The metrics we monitored were the training loss, validation loss, training accuracy, and validation accuracy. The hyperparameters we tuned are the learning rate, momentum, batch size, number of epochs, and the number of units in each hidden layer. We defined the following search space for the hyperparameters:
+## Hyperparameter Tuning
+
+To tune the hyperparameters we used the Bayesian Optimization algorithm in the Weights & Biases library. During tuning, the network was trained 50 times. The goal was to minimize the validation loss. The metrics we monitored were the training loss, validation loss, training accuracy, and validation accuracy. The hyperparameters we tuned are the learning rate, momentum, batch size, number of epochs, and the number of units in each hidden layer. We defined the following search space for the hyperparameters.
 
 | Hyperparameter | Range |
 |----------------|-------|
@@ -73,6 +75,10 @@ The following table shows the best values for the hyperparameters.
 | Units in third hidden layer | 132 |
 | Units in fourth hidden layer | 68 |
 
+The following graph shows the 10 best permutations of hyperparameters from the search space. You can click on the graph to see the Sweep report on the Weights & Biases website.
+
+[![Sweep](./graphs/sweep.png)](https://api.wandb.ai/links/nsiete23/zokyptyt)
+
 ## Implementation
 
 Both implementations are available in the `src` directory. The implementations are in Jupyter Notebooks. The notebook named `tf-mlp-tuning.ipynb` contains hyperparameter tuning performed on the Tensorflow implementation. The notebook named `tf-mlp-tuned.ipynb` contains the final model implemented in Tensorflow. The notebook named `torch-mlp-tuned.ipynb` contains the final model implemented in PyTorch. Both are trained with the best hyperparameters found during tuning. Both models use the Sequential API in their respective libraries.
@@ -83,11 +89,11 @@ The loss function used is Sparse Categorical Crossentropy. The activation functi
 
 The following graph shows the training and validation loss and accuracy during training.
 
-![Tensorflow training and validation loss and accuracy](./images/tf-acc-loss.png)
+![Tensorflow training and validation loss and accuracy](./graphs/tf-acc-loss.png)
 
 The following graph shows the confusion matrix for the test dataset.
 
-![Tensorflow confusion matrix](./images/tf-matrix.png)
+![Tensorflow confusion matrix](./graphs/tf-matrix.png)
 
 ### PyTorch Implementation
 
@@ -95,11 +101,11 @@ The loss function used is Negative Log Likelihood. The activation function used 
 
 The following graph shows the training and validation loss and accuracy during training.
 
-![PyTorch training and validation loss and accuracy](./images/torch-acc-loss.png)
+![PyTorch training and validation loss and accuracy](./graphs/torch-acc-loss.png)
 
 The following graph shows the confusion matrix for the test dataset.
 
-![PyTorch confusion matrix](./images/torch-matrix.png)
+![PyTorch confusion matrix](./graphs/torch-matrix.png)
 
 ## Comparison
 
