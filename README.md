@@ -109,11 +109,11 @@ The following graph shows the confusion matrix for the test dataset.
 
 ## Comparison
 
-##### Pytorch
+#### Pytorch
 
 The PyTorch framework runs on Python and is based on the Torch library (Lua-based deep learning framework). 
 
-###### Advantages:
+##### Advantages:
 1. Pythonic in Nature: Most of the code deployed in PyTorch is pythonic, which means the procedural coding is similar to most of the elements of Python.
 PyTorch smoothly integrates with the python data science stack.
 
@@ -123,7 +123,7 @@ as its syntax is similar to conventional programming languages like Python.
 3. Dynamic Computation Graph: PyTorch supports Dynamic Graphs. This feature is especially
 useful for changing the network behavior programmatically at runtime.
 
-###### Disadvantages:
+##### Disadvantages:
 
 1. Visualization Techniques: PyTorch does not have as great an option for visualization, and developers can connect externally
 to TensorBoard or use one of the existing Python data visualization tools.  
@@ -132,11 +132,11 @@ to TensorBoard or use one of the existing Python data visualization tools.
 as PyTorch is not an end-to-end machine learning development tool. 
 
 
-##### Tensorflow
+#### Tensorflow
 It has a comprehensive, flexible ecosystem of tools, libraries and community resources that lets researchers push the state-of-the-art in ML and developers easily build and deploy ML-powered applications.
 It supports languages like Python, C++ and R. 
 
-###### Advantages:
+##### Advantages:
 1. Data Visualization: TensorFlow provides a tool called TensorBoard that helps with the graphical visualization of data. By reducing the effort of looking at the whole code, the tool facilitates easy node
 debugging and effectively helps with an easy resolution of the neural network.
 
@@ -145,7 +145,7 @@ debugging and effectively helps with an easy resolution of the neural network.
 3. Architectural Support: The TensorFlow architecture uses an application-specific AI accelerator called TPU(Tensor Processing Unit),
 which offers faster computation than that of GPUs and CPUs.
 
-###### Disadvantages:
+##### Disadvantages:
 
 1. Training Loops: In TensorFlow, the procedure to create training loops is slightly complex and not very intuitive.  
 
