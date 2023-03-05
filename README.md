@@ -109,53 +109,12 @@ The following graph shows the confusion matrix for the test dataset.
 
 ## Comparison
 
-#### Pytorch
+We used 2 different loss functions: NLLLoss in Pytorch and Sparse Categorical Crossentropy in Tensorflow. Because ....
 
-The PyTorch framework runs on Python and is based on the Torch library (Lua-based deep learning framework). 
+Both frameworks have Sequential API. It is a container for layers that are added to it in order they were sent to the constructor.
+We sent all linear layers to this container.
 
-##### Advantages:
-1. Pythonic in Nature: Most of the code deployed in PyTorch is pythonic, which means the procedural coding is similar to most of the elements of Python.
-PyTorch smoothly integrates with the python data science stack.
-
-2. Easier to Learn: PyTorch is relatively easier to learn than other deep learning frameworks,
-as its syntax is similar to conventional programming languages like Python.  
-
-3. Dynamic Computation Graph: PyTorch supports Dynamic Graphs. This feature is especially
-useful for changing the network behavior programmatically at runtime.
-
-##### Disadvantages:
-
-1. Visualization Techniques: PyTorch does not have as great an option for visualization, and developers can connect externally
-to TensorBoard or use one of the existing Python data visualization tools.  
-
-2. Not as extensive as TensorFlow: The development of actual applications might involve converting the PyTorch code or model into another framework,
-as PyTorch is not an end-to-end machine learning development tool. 
-
-
-#### Tensorflow
-It has a comprehensive, flexible ecosystem of tools, libraries and community resources that lets researchers push the state-of-the-art in ML and developers easily build and deploy ML-powered applications.
-It supports languages like Python, C++ and R. 
-
-##### Advantages:
-1. Data Visualization: TensorFlow provides a tool called TensorBoard that helps with the graphical visualization of data. By reducing the effort of looking at the whole code, the tool facilitates easy node
-debugging and effectively helps with an easy resolution of the neural network.
-
-2. Scalability: The scalability offered by TensorFlow is high as it was built to be production-ready and can easily handle large datasets. 
-
-3. Architectural Support: The TensorFlow architecture uses an application-specific AI accelerator called TPU(Tensor Processing Unit),
-which offers faster computation than that of GPUs and CPUs.
-
-##### Disadvantages:
-
-1. Training Loops: In TensorFlow, the procedure to create training loops is slightly complex and not very intuitive.  
-
-2. Frequent Updates: As TensorFlow gets updates very often, it becomes overhead for a user to maintain the project as it involves uninstallation and
-reinstallation from time to time so that it can bind and be blended with its latest updates.  
-
-The performance of Python is faster for PyTorch. Despite that, due to TensorFlow’s greater support for symbolic manipulation that
-allows users to perform higher-level operations, programming models can be less flexible in PyTorch as compared to TensorFlow. 
-In general, for most cases, because of its ability to take advantage of any GPU(s) connected to your system, TensorFlow should ideally
-provide better performance than PyTorch. Training deep learning models using Autograd that require significantly less memory is one of
-the exceptions where PyTorch performs better than TensorFlow in terms of training times.   
-
+In Tensorflow, this is the easiest way to use Keras, but it is also the most limited one (compared to Functional API and Model subclassing).
+Since we have a large dataset, we used Stochastic gradient descent as an optimizer (random points are selected to which gradient descent is applied).
+At the end of both notebooks, a classification evaluation and a confusion matrix are shown with similar results.
 
