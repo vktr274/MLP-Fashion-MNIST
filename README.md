@@ -49,7 +49,11 @@ The model is a Multi-Layer Perceptron. It has 784 inputs which represent the pix
 
 ## Hyperparameter Tuning
 
-To tune the hyperparameters we used the Bayesian Optimization algorithm in the Weights & Biases library. During tuning, the network was trained 50 times. The goal was to minimize the validation loss. The metrics we monitored were the training loss, validation loss, training accuracy, and validation accuracy. The hyperparameters we tuned are the learning rate, momentum, batch size, number of epochs, and the number of units in each hidden layer. We defined the following search space for the hyperparameters.
+Hyperparameter tuning was performed on the Tensorflow implementation, and is available in the `tf-mlp-tuning.ipynb` notebook. To tune the hyperparameters we used the Bayesian Optimization algorithm in the Weights & Biases library. During tuning, the network was trained 50 times with different permutations of hyperparameters.
+
+The metrics we monitored during tuning were the training loss, validation loss, training accuracy, and validation accuracy. The hyperparameters we tuned are the learning rate, momentum, batch size, number of epochs, and the number of units in each hidden layer. The goal was to minimize the validation loss.
+
+We defined the following search space for the hyperparameters.
 
 | Hyperparameter | Range |
 |----------------|-------|
