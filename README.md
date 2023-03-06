@@ -107,7 +107,7 @@ The following graph shows the confusion matrix for the test dataset.
 
 ![PyTorch confusion matrix](./graphs/torch-matrix.png)
 
-## Comparison
+## Comparison and Conclusion
 
 Both frameworks offer a similar Sequential API which provides a container for layers. The Sequential constructor in Tensorflow takes a list of layers as a parameter, whereas PyTorch takes layers as parameters or an OrderedDict of layers as a single parameter. Fully connected layers in Tensorflow are implemented as Dense layers, whereas PyTorch uses Linear layers. Dense layers in Tensorflow only require the number of units in the layer as a parameter, whereas Linear layers require the number of inputs and the number of units in the layer as parameters.
 
@@ -115,6 +115,6 @@ Tensorflow, in addition to custom training loops, includes a fit method for mode
 
 Both frameworks have different approaches to loss functions. In PyTorch, we used Negative Log Likelihood, which expects the output of the model to be a log of the probability distribution (output of LogSoftmax). In Tensorflow, we used Sparse Categorical Crossentropy, which expects the output of the model to be a distribution of probabilities (output of Softmax). We note that the alternative in PyTorch is to use Cross Entropy Loss without applying LogSoftmax to the output of the model because this loss function applies LogSoftmax and NLLLoss in a single class.
 
-Both models trained on the best hyperparameters were evaluated on the test dataset containing 10,000 images. The results show similar test accuracies, 0.8787 and 0.8821 for Tensorflow and PyTorch respectively. The Tensorflow model has a slightly lower validation accuracy, 0.8870 and 0.8892 for Tensorflow and PyTorch respectively. Based on the confusion matrix both models struggled the most with classifying the T-shirt/top, Pullover, Coat, and Shirt classes because they likely share similar features.
+Both models trained on the best hyperparameters were evaluated on the test dataset containing 10,000 images. The results show similar test accuracies, 0.8787 and 0.8821 for Tensorflow and PyTorch respectively. Based on the confusion matrix both models struggled the most with classifying the T-shirt/top, Pullover, Coat, and Shirt classes because they likely share similar features.
 
 Overall, we found that Tensorflow has a more user-friendly way of training models by offering a fit method, which can be used in non-complex use cases.
