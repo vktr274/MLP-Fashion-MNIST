@@ -107,7 +107,7 @@ Sequential([
 ])
 ```
 
-The `Rescaling` layer is used to normalize the inputs to the range [0, 1].
+The `Rescaling` layer is used to normalize the inputs to the range [0, 1] and the `Flatten` layer is used to flatten the 28x28 images to 784 inputs.
 
 The following graph shows the training and validation loss and accuracy during training.
 
@@ -139,7 +139,7 @@ Sequential(
 )
 ```
 
-We used the `ToTensor` transform on the input datasets, which converts the images to tensors and normalizes the pixel values to the range [0, 1].
+We also use a `Flatten` layer like in the Tensorflow implementation. We used the `ToTensor` transform on the input datasets, which converts the images to tensors and normalizes the pixel values to the range [0, 1] like the `Rescaling` layer in Tensorflow.
 
 ```py
 data = FashionMNIST(root='../data', download=True, transform=ToTensor())
