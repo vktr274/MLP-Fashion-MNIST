@@ -41,11 +41,28 @@ The image will start a Jupyter Notebook server. You can access it from the link 
 
 ## Dataset
 
-We used the [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist) dataset for this project. It contains 60,000 training images and 10,000 test images. Each image is a 28x28 grayscale image, associated with a label from 10 classes. The dataset is available in both libraries.
+For this project, we used the [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist) dataset introduced by Han Xiao, Kashif Rasul, and Roland Vollgraf in 2017 in their paper [Fashion-MNIST: a Novel Image Dataset for Benchmarking Machine Learning Algorithms](https://arxiv.org/abs/1708.07747).
+
+This dataset contains 60,000 training images and 10,000 test images. Each image is a 28x28 grayscale image, associated with a label from 10 classes. The dataset is available to import in both libraries.
+
+The following table shows the labels and their corresponding classes.
+
+| Label | Class |
+|-------|-------|
+| 0 | T-shirt/top |
+| 1 | Trouser |
+| 2 | Pullover |
+| 3 | Dress |
+| 4 | Coat |
+| 5 | Sandal |
+| 6 | Shirt |
+| 7 | Sneaker |
+| 8 | Bag |
+| 9 | Ankle boot |
 
 ## Model Architecture
 
-The model is a Multi-Layer Perceptron. It has 784 inputs which represent the pixels of the image. Inputs are normalized to the range [0, 1]. There are 4 hidden layers and an output layer with 10 neurons, one for each class. Each hidden layer uses the ReLU activation function. We used Stochastic Gradient Descent with momentum as the optimizer. The validation split is 20%. The model is implemented in both Tensorflow and PyTorch.
+The model is a Multi-Layer Perceptron. It has 784 inputs which represent the pixels of an image. Inputs are normalized to the range [0, 1]. There are 4 hidden layers and an output layer with 10 neurons, one for each class. Each hidden layer uses the ReLU activation function. We used Stochastic Gradient Descent with momentum as the optimizer. The validation split is 20%. The model is implemented in both Tensorflow and PyTorch.
 
 ## Hyperparameter Tuning
 
