@@ -85,11 +85,29 @@ The following graph shows the 10 best permutations of hyperparameters from the s
 
 ## Implementation
 
-Both implementations are available in the `src` directory. The implementations are in Jupyter Notebooks. The notebook named `tf-mlp-tuning.ipynb` contains hyperparameter tuning performed on the Tensorflow implementation. The notebook named `tf-mlp-tuned.ipynb` contains the final model implemented in Tensorflow. The notebook named `torch-mlp-tuned.ipynb` contains the final model implemented in PyTorch. Both are trained with the best hyperparameters found during tuning. Both models use the Sequential API in their respective libraries.
+Both implementations are available in the `src` directory. The implementations are in Jupyter Notebooks. The notebook named `tf-mlp-tuning.ipynb` contains hyperparameter tuning performed on the Tensorflow implementation. The notebook named `tf-mlp-tuned.ipynb` contains the final model implemented in Tensorflow. The notebook named `torch-mlp-tuned.ipynb` contains the final model implemented in PyTorch. Both are trained with the best hyperparameters found during tuning, which we load to a variable named `config` with the help of the Wandb API. Both models use the Sequential API in their respective libraries.
 
 ### Tensorflow Implementation
 
 The loss function used is Sparse Categorical Crossentropy. The activation function used in the output layer is the Softmax function. The training accuracy reached 0.9243 and the validation accuracy reached 0.8870. The training loss reached 0.2050 and the validation loss reached 0.3174. The model has an accuracy of 0.8787 on the test dataset. More metrics are available in the `tf-mlp-tuned.ipynb` notebook.
+
+The Tensorflow model is implemented as follows.
+
+```py
+Sequential([
+  Rescaling(scale=1./255, input_shape=(28, 28)),
+  Flatten(),
+        
+  Dense(config.dense_1, activation='relu'),
+  Dense(config.dense_2, activation='relu'),
+  Dense(config.dense_3, activation='relu'),
+  Dense(config.dense_4, activation='relu'),
+
+  Dense(10, activation='softmax'),
+])
+```
+
+The `Rescaling` layer is used to normalize the inputs to the range [0, 1].
 
 The following graph shows the training and validation loss and accuracy during training.
 
@@ -102,6 +120,31 @@ The following graph shows the confusion matrix for the test dataset.
 ### PyTorch Implementation
 
 The loss function used is Negative Log Likelihood. The activation function used in the output layer is the LogSoftmax function. The training accuracy reached 0.9091 and the validation accuracy reached 0.8892. The training loss reached 0.2435 and the validation loss reached 0.3172. The model has an accuracy of 0.8821 on the test dataset. More metrics are available in the `torch-mlp-tuned.ipynb` notebook.
+
+The PyTorch model is implemented as follows.
+
+```py
+Sequential(
+    Flatten(),
+    Linear(28 * 28, config.dense_1),
+    ReLU(),
+    Linear(config.dense_1, config.dense_2),
+    ReLU(),
+    Linear(config.dense_2, config.dense_3),
+    ReLU(),
+    Linear(config.dense_3, config.dense_4),
+    ReLU(),
+    Linear(config.dense_4, 10),
+    LogSoftmax(dim=1)
+)
+```
+
+We used the `ToTensor` transform on the input datasets, which converts the images to tensors and normalizes the pixel values to the range [0, 1].
+
+```py
+data = FashionMNIST(root='../data', download=True, transform=ToTensor())
+test = FashionMNIST(root='../data', download=True, train=False, transform=ToTensor())
+```
 
 The following graph shows the training and validation loss and accuracy during training.
 
