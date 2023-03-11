@@ -60,6 +60,10 @@ The following table shows the labels and their corresponding classes.
 | 8 | Bag |
 | 9 | Ankle boot |
 
+The following images show examples of the images in the dataset.
+
+![Fashion-MNIST examples](./images/fashion-mnist.png)
+
 ## Model Architecture
 
 The model is a Multi-Layer Perceptron. It has 784 inputs which represent the pixels of an image. Inputs are normalized to the range [0, 1]. There are 4 hidden layers and an output layer with 10 neurons, one for each class. Each hidden layer uses the ReLU activation function. The validation split is 20%. The model is implemented in both Tensorflow and PyTorch.
@@ -117,18 +121,16 @@ The following table shows the best values for the hyperparameters.
 | Units in third hidden layer | 141 | 131 | 147 |
 | Units in fourth hidden layer | 106 | 122 | 99 |
 | Learning rate | 0.08418417163921542 | 0.00012885226472854095 | 0.001266287404751428 |
-| Momentum | 0.31453202807460157 | --- | 0.27566146279392545 |
-| Beta 1 | --- | 0.986435025614692 | --- |
-| Beta 2 | --- | 0.9904482393527106 | --- |
-| Rho | --- | --- | 0.9841212943927308 |
+| Momentum | 0.31453202807460157 | N/A | 0.27566146279392545 |
+| Beta 1 | N/A | 0.986435025614692 | N/A |
+| Beta 2 | N/A | 0.9904482393527106 | N/A |
+| Rho | N/A | N/A | 0.9841212943927308 |
 
 We found that the Adam optimizer converged more smoothly than the other two optimizers. All three optimizers converged to a similar validation loss and accuracy. We chose the Adam optimizer for the final model.
 
 You can find the Sweep report [here](https://api.wandb.ai/links/nsiete23/xwe6x00n).
 
 ## Implementation
-
-**TODO** - change the following to reflect the final model
 
 Both implementations are available in the `src` directory. The implementations are in Jupyter Notebooks. The notebook named `tf-mlp-tuned.ipynb` contains the final model implemented in Tensorflow. The notebook named `torch-mlp-tuned.ipynb` contains the final model implemented in PyTorch. Both are trained with the best hyperparameters found during tuning, which we load to a variable named `config` with the help of the Wandb API. Both models use the Sequential API and Adam optimizer in their respective libraries.
 
@@ -156,11 +158,11 @@ The `Rescaling` layer is used to normalize the inputs to the range [0, 1] and th
 
 The following graph shows the training and validation loss and accuracy during training.
 
-![Tensorflow training and validation loss and accuracy](./graphs/tf-acc-loss.png)
+![Tensorflow training and validation loss and accuracy](./images/tf-acc-loss.png)
 
 The following graph shows the confusion matrix for the test dataset.
 
-![Tensorflow confusion matrix](./graphs/tf-matrix.png)
+![Tensorflow confusion matrix](./images/tf-matrix.png)
 
 ### PyTorch Implementation
 
@@ -193,11 +195,11 @@ test = FashionMNIST(root='../data', download=True, train=False, transform=ToTens
 
 The following graph shows the training and validation loss and accuracy during training.
 
-![PyTorch training and validation loss and accuracy](./graphs/torch-acc-loss.png)
+![PyTorch training and validation loss and accuracy](./images/torch-acc-loss.png)
 
 The following graph shows the confusion matrix for the test dataset.
 
-![PyTorch confusion matrix](./graphs/torch-matrix.png)
+![PyTorch confusion matrix](./images/torch-matrix.png)
 
 ## Comparison and Conclusion
 
