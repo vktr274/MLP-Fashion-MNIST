@@ -81,7 +81,7 @@ We defined the following search space for the hyperparameters for all optimizers
 | Hyperparameter | Range |
 |----------------|-------|
 | Batch size | [16, 32, 64, 128, 256] |
-| Number of epochs | min: 20, max: 200 |
+| Number of epochs | min: 15, max: 50 |
 | Units in first hidden layer | min: 256, max: 512 |
 | Units in second hidden layer | min: 128, max: 256 |
 | Units in third hidden layer | min: 128, max: 256 |
