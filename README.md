@@ -62,20 +62,20 @@ The following table shows the labels and their corresponding classes.
 
 ## Model Architecture
 
-The model is a Multi-Layer Perceptron. It has 784 inputs which represent the pixels of an image. Inputs are normalized to the range [0, 1]. There are 4 hidden layers and an output layer with 10 neurons, one for each class. Each hidden layer uses the ReLU activation function. We used Stochastic Gradient Descent with momentum as the optimizer. The validation split is 20%. The model is implemented in both Tensorflow and PyTorch.
+The model is a Multi-Layer Perceptron. It has 784 inputs which represent the pixels of an image. Inputs are normalized to the range [0, 1]. There are 4 hidden layers and an output layer with 10 neurons, one for each class. Each hidden layer uses the ReLU activation function. The validation split is 20%. The model is implemented in both Tensorflow and PyTorch.
 
 ## Hyperparameter Tuning
 
-Hyperparameter tuning was performed on the Tensorflow implementation, and is available in the `tf-mlp-tuning.ipynb` notebook. To tune the hyperparameters we used the Bayesian Optimization algorithm in the Weights & Biases library. During tuning, the network was trained 50 times with different permutations of hyperparameters.
+Hyperparameter tuning was performed on the Tensorflow implementation. To tune the hyperparameters we used the Bayesian Optimization algorithm in the Weights & Biases library. We tried 3 different optimizers during tuning: Adam, SGD, and RMSprop. We chose the Adam optimizer for the final model. The code for the tuning is available in `tf-mlp-sgd-tuning.ipynb`, `tf-mlp-adam-tuning.ipynb`, and `tf-mlp-rmsprop-tuning.ipynb` in the `src` directory for SGD, Adam, and RMSprop, respectively.
+
+During tuning, the network was trained 150 times in total - 50 times with different permutations of hyperparameters for each optimizer.
 
 The metrics we monitored during tuning were the training loss, validation loss, training accuracy, and validation accuracy. The hyperparameters we tuned are the learning rate, momentum, batch size, number of epochs, and the number of units in each hidden layer. The goal was to minimize the validation loss.
 
-We defined the following search space for the hyperparameters.
+We defined the following search space for the hyperparameters for all optimizers.
 
 | Hyperparameter | Range |
 |----------------|-------|
-| Learning rate | min: 0.0001, max: 0.1 |
-| Momentum | min: 0.0, max: 0.9 |
 | Batch size | [16, 32, 64, 128, 256] |
 | Number of epochs | min: 20, max: 200 |
 | Units in first hidden layer | min: 256, max: 512 |
@@ -83,24 +83,52 @@ We defined the following search space for the hyperparameters.
 | Units in third hidden layer | min: 128, max: 256 |
 | Units in fourth hidden layer | min: 32, max: 128 |
 
+The search space for the SGD optimizer includes the following hyperparameters in addition to the ones listed above.
+
+| Hyperparameter | Range |
+|----------------|-------|
+| Learning rate | min: 0.0001, max: 0.1 |
+| Momentum | min: 0.0, max: 0.9 |
+
+The search space for the Adam optimizer includes the following hyperparameters in addition to the ones listed in the first table.
+
+| Hyperparameter | Range |
+|----------------|-------|
+| Learning rate | min: 0.0001, max: 0.1 |
+| Beta 1 | min: 0.9, max: 0.999 |
+| Beta 2 | min: 0.99, max: 0.9999 |
+
+The search space for the RMSprop optimizer includes the following hyperparameters in addition to the ones listed in the first table.
+
+| Hyperparameter | Range |
+|----------------|-------|
+| Learning rate | min: 0.0001, max: 0.1 |
+| Momentum | min: 0.0, max: 0.9 |
+| Rho | min: 0.8, max: 0.999 |
+
 The following table shows the best values for the hyperparameters.
 
-| Hyperparameter | Value |
-|----------------|-------|
-| Learning rate | 0.023615358865991583 |
-| Momentum | 0.06432719692244611 |
-| Batch size | 64 |
-| Number of epochs | 21 |
-| Units in first hidden layer | 456 |
-| Units in second hidden layer | 150 |
-| Units in third hidden layer | 132 |
-| Units in fourth hidden layer | 68 |
+| Hyperparameter | Value for SGD | Value for Adam | Value for RMSprop |
+|----------------|---------------|----------------|-------------------|
+| Batch size | 128 | 128 | 256 |
+| Number of epochs | 20 | 19 | 15 |
+| Units in first hidden layer | 414 | 485 | 363 |
+| Units in second hidden layer | 205 | 176 | 246 |
+| Units in third hidden layer | 141 | 131 | 147 |
+| Units in fourth hidden layer | 106 | 122 | 99 |
+| Learning rate | 0.08418417163921542 | 0.00012885226472854095 | 0.001266287404751428 |
+| Momentum | 0.31453202807460157 | --- | 0.27566146279392545 |
+| Beta 1 | --- | 0.986435025614692 | --- |
+| Beta 2 | --- | 0.9904482393527106 | --- |
+| Rho | --- | --- | 0.9841212943927308 |
 
-The following graph shows the 10 best permutations of hyperparameters from the search space. You can click on the graph to see the Sweep report on the Weights & Biases website.
+We found that the Adam optimizer converged more smoothly than the other two optimizers. All three optimizers converged to a similar validation loss and accuracy. We chose the Adam optimizer for the final model.
 
-[![Sweep](./graphs/sweep.png)](https://api.wandb.ai/links/nsiete23/zokyptyt)
+You can find the Sweep report [here](https://api.wandb.ai/links/nsiete23/xwe6x00n).
 
 ## Implementation
+
+**TODO** - change the following to reflect the final model
 
 Both implementations are available in the `src` directory. The implementations are in Jupyter Notebooks. The notebook named `tf-mlp-tuning.ipynb` contains hyperparameter tuning performed on the Tensorflow implementation. The notebook named `tf-mlp-tuned.ipynb` contains the final model implemented in Tensorflow. The notebook named `torch-mlp-tuned.ipynb` contains the final model implemented in PyTorch. Both are trained with the best hyperparameters found during tuning, which we load to a variable named `config` with the help of the Wandb API. Both models use the Sequential API in their respective libraries.
 
