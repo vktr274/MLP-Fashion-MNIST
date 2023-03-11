@@ -134,6 +134,20 @@ You can find the Sweep report [here](https://api.wandb.ai/links/nsiete23/xwe6x00
 
 Both implementations are available in the `src` directory. The implementations are in Jupyter Notebooks. The notebook named `tf-mlp-tuned.ipynb` contains the final model implemented in Tensorflow. The notebook named `torch-mlp-tuned.ipynb` contains the final model implemented in PyTorch. Both are trained with the best hyperparameters found during tuning, which we load to a variable named `config` with the help of the Wandb API. Both models use the Sequential API and Adam optimizer in their respective libraries.
 
+The following table shows the hyperparameters used in the final model with the Adam optimizer.
+
+| Hyperparameter | Value |
+|----------------|-------|
+| Batch size | 128 |
+| Number of epochs | 19 |
+| Units in first hidden layer | 485 |
+| Units in second hidden layer | 176 |
+| Units in third hidden layer | 131 |
+| Units in fourth hidden layer | 122 |
+| Learning rate | 0.00012885226472854095 |
+| Beta 1 | 0.986435025614692 |
+| Beta 2 | 0.9904482393527106 |
+
 ### Tensorflow Implementation
 
 The loss function used is Sparse Categorical Crossentropy. The activation function used in the output layer is the Softmax function. The training accuracy reached 0.9259 and the validation accuracy reached 0.8882. The training loss reached 0.2042 and the validation loss reached 0.3175. The model has an accuracy of 0.8840 on the test dataset. More metrics are available in the `tf-mlp-tuned.ipynb` notebook.
@@ -203,9 +217,9 @@ The following graph shows the confusion matrix for the test dataset.
 
 ## Comparison and Conclusion
 
-Both frameworks offer a similar Sequential API which provides a container for layers. The Sequential constructor in Tensorflow takes a list of layers as a parameter, whereas PyTorch takes layers as parameters or an OrderedDict of layers as a single parameter. Fully connected layers in Tensorflow are implemented as Dense layers, whereas PyTorch uses Linear layers. Dense layers in Tensorflow only require the number of units in the layer as a parameter, whereas Linear layers require the number of inputs and the number of units in the layer as parameters.
+Both frameworks offer a similar Sequential API which provides a container for layers. The Sequential constructor in Tensorflow takes a list of layers as a parameter, whereas PyTorch takes layers as parameters or an OrderedDict of layers as a single parameter. Fully connected layers in Tensorflow are implemented as Dense layers, whereas PyTorch uses Linear layers. Dense layers in Tensorflow only require the number of units in the layer as a parameter, whereas Linear layers in PyTorch require the number of inputs and the number of units in the layer as parameters.
 
-Tensorflow, in addition to custom training loops, includes a fit method for model training and validation, but PyTorch relies on the programmer to create their own training loop, where it's required to zero gradients, run the forward pass, calculate the loss, run the backward pass, and update the weights in each batch of an epoch, and validation loop after each parameter optimization step. In addition to training, the fit method is able to create a validation dataset from the training dataset. In PyTorch, we had to create a validation dataset manually.
+Tensorflow, in addition to custom training loops, includes a fit method for model training and validation, but PyTorch relies on the programmer to create their own training loop, where it's required to zero gradients, run the forward pass, calculate the loss, run the backward pass, and update the weights in each batch of an epoch, and validation loop after each parameter optimization step. In addition to training, the fit method in Tensorflow is able to create a validation dataset from the training dataset. In PyTorch, we had to create a validation dataset manually.
 
 Both frameworks have different approaches to loss functions. In PyTorch, we used Negative Log Likelihood, which expects the output of the model to be a log of the probability distribution (output of LogSoftmax). In Tensorflow, we used Sparse Categorical Crossentropy, which expects the output of the model to be a distribution of probabilities (output of Softmax). Both, Sparse Categorical Crossentropy in Tensorflow and Negative Log Likelihood in PyTorch, accept target labels as integers. We note that the alternative in PyTorch is to use Cross Entropy Loss without applying LogSoftmax to the output of the model because this loss function applies LogSoftmax and NLLLoss in a single class.
 
