@@ -70,7 +70,7 @@ The model is a Multi-Layer Perceptron. It has 784 inputs which represent the pix
 
 ## Hyperparameter Tuning
 
-Hyperparameter tuning was performed on the Tensorflow implementation. To tune the hyperparameters we used the Bayesian Optimization algorithm in the Weights & Biases library. We tried 3 different optimizers during tuning: Adam, SGD, and RMSprop. We chose the Adam optimizer for the final model. The code for the tuning is available in `tf-mlp-sgd-tuning.ipynb`, `tf-mlp-adam-tuning.ipynb`, and `tf-mlp-rmsprop-tuning.ipynb` in the `src` directory for SGD, Adam, and RMSprop, respectively.
+Hyperparameter tuning was performed on the Tensorflow implementation. To tune the hyperparameters we used the Bayesian Optimization algorithm in the Weights & Biases library. We tried 3 different optimizers during tuning: Adam, SGD, and RMSprop. The code for the tuning is available in `tf-mlp-sgd-tuning.ipynb`, `tf-mlp-adam-tuning.ipynb`, and `tf-mlp-rmsprop-tuning.ipynb` in the `src` directory for SGD, Adam, and RMSprop, respectively.
 
 During tuning, the network was trained 150 times in total - 50 times with different permutations of hyperparameters for each optimizer.
 
