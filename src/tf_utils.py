@@ -1,4 +1,3 @@
-# %% [code]
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Flatten, Dense, Rescaling
 from wandb.keras import WandbCallback
@@ -20,12 +19,12 @@ def create_model(config):
     return model
 
 
-def train_model(model, config, x_train, y_train, verbose=1):
+def train_model(model, config, x_train, y_train, verbose=1, validation_split=0.2):
     history = model.fit(
         x_train,
         y_train,
         epochs=config.epochs,
-        validation_split=0.2,
+        validation_split=validation_split,
         batch_size=config.batch_size,
         shuffle=True,
         verbose=verbose,
