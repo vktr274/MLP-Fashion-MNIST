@@ -130,11 +130,11 @@ You can find the Sweep report [here](https://api.wandb.ai/links/nsiete23/xwe6x00
 
 **TODO** - change the following to reflect the final model
 
-Both implementations are available in the `src` directory. The implementations are in Jupyter Notebooks. The notebook named `tf-mlp-tuning.ipynb` contains hyperparameter tuning performed on the Tensorflow implementation. The notebook named `tf-mlp-tuned.ipynb` contains the final model implemented in Tensorflow. The notebook named `torch-mlp-tuned.ipynb` contains the final model implemented in PyTorch. Both are trained with the best hyperparameters found during tuning, which we load to a variable named `config` with the help of the Wandb API. Both models use the Sequential API in their respective libraries.
+Both implementations are available in the `src` directory. The implementations are in Jupyter Notebooks. The notebook named `tf-mlp-tuned.ipynb` contains the final model implemented in Tensorflow. The notebook named `torch-mlp-tuned.ipynb` contains the final model implemented in PyTorch. Both are trained with the best hyperparameters found during tuning, which we load to a variable named `config` with the help of the Wandb API. Both models use the Sequential API and Adam optimizer in their respective libraries.
 
 ### Tensorflow Implementation
 
-The loss function used is Sparse Categorical Crossentropy. The activation function used in the output layer is the Softmax function. The training accuracy reached 0.9243 and the validation accuracy reached 0.8870. The training loss reached 0.2050 and the validation loss reached 0.3174. The model has an accuracy of 0.8787 on the test dataset. More metrics are available in the `tf-mlp-tuned.ipynb` notebook.
+The loss function used is Sparse Categorical Crossentropy. The activation function used in the output layer is the Softmax function. The training accuracy reached 0.9259 and the validation accuracy reached 0.8882. The training loss reached 0.2042 and the validation loss reached 0.3175. The model has an accuracy of 0.8840 on the test dataset. More metrics are available in the `tf-mlp-tuned.ipynb` notebook.
 
 The Tensorflow model is implemented as follows.
 
@@ -164,7 +164,7 @@ The following graph shows the confusion matrix for the test dataset.
 
 ### PyTorch Implementation
 
-The loss function used is Negative Log Likelihood. The activation function used in the output layer is the LogSoftmax function. The training accuracy reached 0.9091 and the validation accuracy reached 0.8892. The training loss reached 0.2435 and the validation loss reached 0.3172. The model has an accuracy of 0.8821 on the test dataset. More metrics are available in the `torch-mlp-tuned.ipynb` notebook.
+The loss function used is Negative Log Likelihood. The activation function used in the output layer is the LogSoftmax function. The training accuracy reached 0.8913 and the validation accuracy reached 0.8858. The training loss reached 0.2997 and the validation loss reached 0.3197. The model has an accuracy of 0.8759 on the test dataset. More metrics are available in the `torch-mlp-tuned.ipynb` notebook.
 
 The PyTorch model is implemented as follows.
 
@@ -207,7 +207,7 @@ Tensorflow, in addition to custom training loops, includes a fit method for mode
 
 Both frameworks have different approaches to loss functions. In PyTorch, we used Negative Log Likelihood, which expects the output of the model to be a log of the probability distribution (output of LogSoftmax). In Tensorflow, we used Sparse Categorical Crossentropy, which expects the output of the model to be a distribution of probabilities (output of Softmax). Both, Sparse Categorical Crossentropy in Tensorflow and Negative Log Likelihood in PyTorch, accept target labels as integers. We note that the alternative in PyTorch is to use Cross Entropy Loss without applying LogSoftmax to the output of the model because this loss function applies LogSoftmax and NLLLoss in a single class.
 
-Both models trained on the best hyperparameters were evaluated on the test dataset containing 10,000 images. The results show similar test accuracies, 0.8787 and 0.8821 for Tensorflow and PyTorch respectively. Based on the confusion matrix both models struggled the most with classifying the T-shirt/top, Pullover, Coat, and Shirt classes because they likely share similar features.
+Both models trained on the best hyperparameters were evaluated on the test dataset containing 10,000 images. The results show similar test accuracies, 0.8840 and 0.8759 for Tensorflow and PyTorch respectively. Based on the confusion matrix both models struggled the most with classifying the T-shirt/top, Pullover, Coat, and Shirt classes because they likely share similar features.
 
 By assessing the training and validation loss and accuracy graphs, we can see that the Tensorflow model had a greater gap between the training and validation loss and accuracy. This indicates higher variance in the Tensorflow model.
 
