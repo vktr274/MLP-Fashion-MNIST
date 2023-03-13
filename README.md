@@ -39,6 +39,19 @@ docker run --rm -it -p 8888:8888 -v ${PWD}/src:/mlp/src nn-project-1
 
 The image will start a Jupyter Notebook server. You can access it from the link provided in the output of the command.
 
+## Utility Scripts
+To avoid writing duplicate code in notebooks, we have created several scripts that contain the basic functions needed to train a neural network. They are divided according to whether they relate to the Pytorch or Tensorflow framework. One script is dedicated to plotting graphs.
+
+#### plot_utils
+There are graphs for evaluating training and validation accuracy and development of training and validation loss. Also the code for running the classification evaluation and visualization of the confusion matrix.
+
+#### tf_utils
+This script contains functions for creating and training a model for Tensorflow.
+
+#### torch_utils
+In this script there is a dataset partitioning (training, testing, validation), fit function, model creation and evaluation for Pytorch.
+
+
 ## Dataset
 
 For this project, we used the [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist) dataset introduced by Han Xiao, Kashif Rasul, and Roland Vollgraf in 2017 in their paper [Fashion-MNIST: a Novel Image Dataset for Benchmarking Machine Learning Algorithms](https://arxiv.org/abs/1708.07747).
