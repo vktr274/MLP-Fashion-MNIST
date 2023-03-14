@@ -43,13 +43,13 @@ The image will start a Jupyter Notebook server. You can access it from the link 
 To avoid writing duplicate code in notebooks, we have created several scripts that contain the basic functions needed to train a neural network. They are divided according to whether they relate to the Pytorch or Tensorflow framework. One script is dedicated to plotting graphs.
 
 #### plot_utils
-There are graphs for evaluating training and validation accuracy and development of training and validation loss. Also the code for running the classification evaluation and visualization of the confusion matrix.
+There are graphs for evaluating training and validation accuracy and development of training and validation loss (plot_training). Also the code for visualization of the confusion matrix (show_confusion_matrix).
 
 #### tf_utils
-This script contains functions for creating and training a model for Tensorflow.
+This script contains functions create_model (for creating model) and train_model (for training model) for Tensorflow.
 
 #### torch_utils
-In this script there is a dataset partitioning (training, testing, validation), fit function, model creation and evaluation for Pytorch.
+In this script there is a dataset partitioning (training, testing, validation in function split_data), fit function, model creation (create_model) and evaluation (evaluate) for Pytorch.
 
 
 ## Dataset
