@@ -40,17 +40,31 @@ docker run --rm -it -p 8888:8888 -v ${PWD}/src:/mlp/src nn-project-1
 The image will start a Jupyter Notebook server. You can access it from the link provided in the output of the command.
 
 ## Utility Scripts
-To avoid writing duplicate code in notebooks, we have created several scripts that contain the basic functions needed to train a neural network. They are divided according to whether they relate to the Pytorch or Tensorflow framework. One script is dedicated to plotting graphs.
 
-#### plot_utils
-There are graphs for evaluating training and validation accuracy and development of training and validation loss (plot_training). Also the code for visualization of the confusion matrix (show_confusion_matrix).
+To avoid writing duplicate code in notebooks, we have created several scripts that contain the basic functions needed to train and test a neural network. They are divided according to whether they relate to the PyTorch or Tensorflow framework. One script is dedicated to plotting graphs.
 
-#### tf_utils
-This script contains functions create_model (for creating model) and train_model (for training model) for Tensorflow.
+### plot_utils.py
 
-#### torch_utils
-In this script there is a dataset partitioning (training, testing, validation in function split_data), fit function, model creation (create_model) and evaluation (evaluate) for Pytorch.
+This script contains the following functions:
 
+- plot_training - plots training and validation accuracy and loss
+- show_confusion_matrix - shows the confusion matrix
+
+### tf_utils.py
+
+This script contains the following functions for the Tensorflow implementation:
+
+- create_model - creates the MLP
+- train_model - trains the MLP
+
+### torch_utils.py
+
+This script contains the following functions for the PyTorch implementation:
+
+- create_model - creates the MLP
+- evaluate - evaluates the MLP
+- fit - trains the MLP
+- split_data - splits the dataset into training, validation, and test sets
 
 ## Dataset
 
@@ -242,5 +256,5 @@ Overall, we found that Tensorflow has a more beginner-friendly way of training m
 
 ## References
 
-* [Tensorflow Docs](https://tensorflow.org/api_docs/python)
-* [PyTorch Docs](https://pytorch.org/docs/stable/index.html)
+- [Tensorflow Docs](https://tensorflow.org/api_docs/python)
+- [PyTorch Docs](https://pytorch.org/docs/stable/index.html)
