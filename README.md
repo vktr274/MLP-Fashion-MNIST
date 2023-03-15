@@ -41,7 +41,7 @@ The image will start a Jupyter Notebook server. You can access it from the link 
 
 ## Utility Scripts
 
-To avoid writing duplicate code in notebooks, we have created several scripts that contain the basic functions needed to train, test, and evaluate a neural network. The scripts are located in the `src` directory.
+To avoid writing duplicate code in notebooks, we have created several scripts that contain functions needed to train, test, and evaluate a neural network. The scripts are located in the `src` directory.
 
 ### plot_utils.py
 
