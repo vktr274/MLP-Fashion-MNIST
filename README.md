@@ -41,7 +41,7 @@ The image will start a Jupyter Notebook server. You can access it from the link 
 
 ## Utility Scripts
 
-To avoid writing duplicate code in notebooks, we have created several scripts that contain functions needed to train, test, and evaluate a neural network. The scripts are located in the `src` directory.
+To avoid writing duplicate code in notebooks, we have created several scripts that contain functions needed to train, test, and evaluate a neural network. The scripts are located in the [`src`](./src/) directory.
 
 ### plot_utils.py
 
@@ -97,7 +97,7 @@ The model is a Multi-Layer Perceptron. It has 784 inputs which represent the pix
 
 ## Hyperparameter Tuning
 
-Hyperparameter tuning was performed on the Tensorflow implementation. To tune the hyperparameters we used the Bayesian Optimization algorithm in the Weights & Biases library. We tried 3 different optimizers during tuning: Adam, SGD, and RMSprop. The code for the tuning is available in `tf-mlp-sgd-tuning.ipynb`, `tf-mlp-adam-tuning.ipynb`, and `tf-mlp-rmsprop-tuning.ipynb` in the `src` directory for SGD, Adam, and RMSprop, respectively.
+Hyperparameter tuning was performed on the Tensorflow implementation. To tune the hyperparameters we used the Bayesian Optimization algorithm in the Weights & Biases library. We tried 3 different optimizers during tuning: Adam, SGD, and RMSprop. The code for the tuning is available in [`tf-mlp-sgd-tuning.ipynb`](./src/tf-mlp-sgd-tuning.ipynb), [`tf-mlp-adam-tuning.ipynb`](./src/tf-mlp-adam-tuning.ipynb), and [`tf-mlp-rmsprop-tuning.ipynb`](./src/tf-mlp-rmsprop-tuning.ipynb) in the [`src`](./src/) directory for SGD, Adam, and RMSprop, respectively.
 
 During tuning, the network was trained 150 times in total - 50 times with different permutations of hyperparameters for each optimizer. The metrics we monitored during tuning were the training loss, validation loss, training accuracy, and validation accuracy. The goal of the tuning was to minimize the validation loss.
 
@@ -157,7 +157,7 @@ You can find the Sweep report [here](https://api.wandb.ai/links/nsiete23/xwe6x00
 
 ## Implementation
 
-Both implementations are available in the `src` directory. The implementations are in Jupyter Notebooks. The notebook named `tf-mlp-tuned.ipynb` contains the final model implemented in Tensorflow. The notebook named `torch-mlp-tuned.ipynb` contains the final model implemented in PyTorch. Both are trained with the best hyperparameters found during tuning, which we load to a variable named `config` with the help of the Wandb API. Both models use the Sequential API and Adam optimizer in their respective libraries.
+Both implementations are available in the [`src`](./src/) directory. The implementations are in Jupyter Notebooks. The notebook named [`tf-mlp-tuned.ipynb`](./src/tf-mlp-tuned.ipynb) contains the final model implemented in Tensorflow. The notebook named [`torch-mlp-tuned.ipynb`](./src/torch-mlp-tuned.ipynb) contains the final model implemented in PyTorch. Both are trained with the best hyperparameters found during tuning, which we load to a variable named `config` with the help of the Wandb API. Both models use the Sequential API and Adam optimizer in their respective libraries.
 
 The following table shows the hyperparameters used in the final model with the Adam optimizer.
 
@@ -175,7 +175,7 @@ The following table shows the hyperparameters used in the final model with the A
 
 ### Tensorflow Implementation
 
-The loss function used is Sparse Categorical Crossentropy. The activation function used in the output layer is the Softmax function. The training accuracy reached 0.9259 and the validation accuracy reached 0.8882. The training loss reached 0.2042 and the validation loss reached 0.3175. The model has an accuracy of 0.8840 on the test dataset. More metrics are available in the `tf-mlp-tuned.ipynb` notebook.
+The loss function used is Sparse Categorical Crossentropy. The activation function used in the output layer is the Softmax function. The training accuracy reached 0.9259 and the validation accuracy reached 0.8882. The training loss reached 0.2042 and the validation loss reached 0.3175. The model has an accuracy of 0.8840 on the test dataset. More metrics are available in the [`tf-mlp-tuned.ipynb`](./src/tf-mlp-tuned.ipynb) notebook.
 
 The Tensorflow model is implemented as follows.
 
@@ -205,7 +205,7 @@ The following graph shows the confusion matrix for the test dataset.
 
 ### PyTorch Implementation
 
-The loss function used is Negative Log Likelihood. The activation function used in the output layer is the LogSoftmax function. The training accuracy reached 0.8913 and the validation accuracy reached 0.8858. The training loss reached 0.2997 and the validation loss reached 0.3197. The model has an accuracy of 0.8759 on the test dataset. More metrics are available in the `torch-mlp-tuned.ipynb` notebook.
+The loss function used is Negative Log Likelihood. The activation function used in the output layer is the LogSoftmax function. The training accuracy reached 0.8913 and the validation accuracy reached 0.8858. The training loss reached 0.2997 and the validation loss reached 0.3197. The model has an accuracy of 0.8759 on the test dataset. More metrics are available in the [`torch-mlp-tuned.ipynb`](./src/torch-mlp-tuned.ipynb) notebook.
 
 The PyTorch model is implemented as follows.
 
