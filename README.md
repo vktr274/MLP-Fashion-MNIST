@@ -43,21 +43,21 @@ The image will start a Jupyter Notebook server. You can access it from the link 
 
 To avoid writing duplicate code in notebooks, we have created several scripts that contain functions needed to train, test, and evaluate a neural network. The scripts are located in the [`src`](./src/) directory.
 
-### plot_utils.py
+### [plot_utils.py](./src/plot_utils.py)
 
 This script contains the following functions:
 
 - plot_training - plots training and validation accuracy and loss
 - show_confusion_matrix - shows the confusion matrix
 
-### tf_utils.py
+### [tf_utils.py](./src/tf_utils.py)
 
 This script contains the following functions for the Tensorflow implementation:
 
 - create_model - creates the MLP
 - train_model - trains the MLP
 
-### torch_utils.py
+### [torch_utils.py](./src/torch_utils.py)
 
 This script contains the following functions for the PyTorch implementation:
 
