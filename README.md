@@ -213,7 +213,7 @@ The following table shows metrics for the Tensorflow implementation.
 | Validation loss | 0.3175 |
 | Test accuracy | 0.8840 |
 
-More metrics are available in the [`tf-mlp-tuned.ipynb`](./src/tf-mlp-tuned.ipynb) notebook.
+More metrics are available in the [`tf-mlp-tuned.ipynb`](./src/tf-mlp-tuned.ipynb) notebook in the *Run classification evaluation* section.
 
 ### PyTorch Implementation
 
@@ -262,7 +262,7 @@ The following table shows metrics for the PyTorch implementation.
 | Validation loss | 0.3197 |
 | Test accuracy | 0.8759 |
 
-More metrics are available in the [`torch-mlp-tuned.ipynb`](./src/torch-mlp-tuned.ipynb) notebook.
+More metrics are available in the [`torch-mlp-tuned.ipynb`](./src/torch-mlp-tuned.ipynb) notebook in the *Run classification evaluation* section.
 
 ## Comparison and Conclusion
 
