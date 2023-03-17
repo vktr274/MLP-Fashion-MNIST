@@ -175,7 +175,7 @@ The following table shows the hyperparameters used in the final model with the A
 
 ### Tensorflow Implementation
 
-The loss function used is Sparse Categorical Crossentropy. The activation function used in the output layer is the Softmax function. The training accuracy reached 0.9259 and the validation accuracy reached 0.8882. The training loss reached 0.2042 and the validation loss reached 0.3175. The model has an accuracy of 0.8840 on the test dataset. More metrics are available in the [`tf-mlp-tuned.ipynb`](./src/tf-mlp-tuned.ipynb) notebook.
+The loss function used is Sparse Categorical Crossentropy. The activation function used in the output layer is the Softmax function.
 
 The Tensorflow model is implemented as follows.
 
@@ -203,9 +203,21 @@ The following graph shows the confusion matrix for the test dataset.
 
 ![Tensorflow confusion matrix](./images/tf-matrix.png)
 
+The following table shows metrics for the Tensorflow implementation.
+
+| Metric | Value |
+|--------|-------|
+| Training accuracy | 0.9259 |
+| Validation accuracy | 0.8882 |
+| Training loss | 0.2042 |
+| Validation loss | 0.3175 |
+| Test accuracy | 0.8840 |
+
+More metrics are available in the [`tf-mlp-tuned.ipynb`](./src/tf-mlp-tuned.ipynb) notebook.
+
 ### PyTorch Implementation
 
-The loss function used is Negative Log Likelihood. The activation function used in the output layer is the LogSoftmax function. The training accuracy reached 0.8913 and the validation accuracy reached 0.8858. The training loss reached 0.2997 and the validation loss reached 0.3197. The model has an accuracy of 0.8759 on the test dataset. More metrics are available in the [`torch-mlp-tuned.ipynb`](./src/torch-mlp-tuned.ipynb) notebook.
+The loss function used is Negative Log Likelihood. The activation function used in the output layer is the LogSoftmax function.
 
 The PyTorch model is implemented as follows.
 
@@ -239,6 +251,18 @@ The following graph shows the training and validation loss and accuracy during t
 The following graph shows the confusion matrix for the test dataset.
 
 ![PyTorch confusion matrix](./images/torch-matrix.png)
+
+The following table shows metrics for the PyTorch implementation.
+
+| Metric | Value |
+|--------|-------|
+| Training accuracy | 0.8913 |
+| Validation accuracy | 0.8858 |
+| Training loss | 0.2997 |
+| Validation loss | 0.3197 |
+| Test accuracy | 0.8759 |
+
+More metrics are available in the [`torch-mlp-tuned.ipynb`](./src/torch-mlp-tuned.ipynb) notebook.
 
 ## Comparison and Conclusion
 
