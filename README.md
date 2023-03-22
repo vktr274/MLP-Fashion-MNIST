@@ -207,11 +207,11 @@ The following table shows metrics for the Tensorflow implementation.
 
 | Metric | Value |
 |--------|-------|
-| Training accuracy | 0.9259 |
-| Validation accuracy | 0.8882 |
-| Training loss | 0.2042 |
-| Validation loss | 0.3175 |
-| Test accuracy | 0.8840 |
+| Training accuracy | 0.9214 |
+| Validation accuracy | 0.8946 |
+| Training loss | 0.2157 |
+| Validation loss | 0.3066 |
+| Test accuracy | 0.8867 |
 
 More metrics are available in the [`tf-mlp-tuned.ipynb`](./src/tf-mlp-tuned.ipynb) notebook in the *Run classification evaluation* section.
 
@@ -272,7 +272,7 @@ Tensorflow, in addition to custom training loops, includes a fit method for mode
 
 Both frameworks have different approaches to loss functions. In PyTorch, we used Negative Log Likelihood, which expects the output of the model to be a log of the probability distribution (output of LogSoftmax). In Tensorflow, we used Sparse Categorical Crossentropy, which expects the output of the model to be a distribution of probabilities (output of Softmax). Both, Sparse Categorical Crossentropy in Tensorflow and Negative Log Likelihood in PyTorch, accept target labels as integers. We note that the alternative in PyTorch is to use Cross Entropy Loss without applying LogSoftmax to the output of the model because this loss function applies LogSoftmax and NLLLoss in a single class.
 
-Both models trained on the best hyperparameters were evaluated on the test dataset containing 10,000 images. The results show similar test accuracies, 0.8840 and 0.8759 for Tensorflow and PyTorch respectively. Based on the confusion matrix both models struggled the most with classifying the T-shirt/top, Pullover, Coat, and Shirt classes because they likely share similar features.
+Both models trained on the best hyperparameters were evaluated on the test dataset containing 10,000 images. The results show similar test accuracies, 0.8867 and 0.8759 for Tensorflow and PyTorch respectively. Based on the confusion matrix both models struggled the most with classifying the T-shirt/top, Pullover, Coat, and Shirt classes because they likely share similar features.
 
 By assessing the training and validation loss and accuracy graphs, we can see that the Tensorflow model had a greater gap between the training and validation loss and accuracy. This indicates higher variance in the Tensorflow model.
 
