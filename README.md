@@ -97,7 +97,7 @@ The model is a Multi-Layer Perceptron. It has 784 inputs which represent the pix
 
 ## Hyperparameter Tuning
 
-Hyperparameter tuning was performed on the Tensorflow implementation. To tune the hyperparameters we used the Bayesian Optimization algorithm in the Weights & Biases library. We tried 3 different optimizers during tuning: Adam, SGD, and RMSprop. The code for the tuning is available in [`tf-mlp-sgd-tuning.ipynb`](./src/tf-mlp-sgd-tuning.ipynb), [`tf-mlp-adam-tuning.ipynb`](./src/tf-mlp-adam-tuning.ipynb), and [`tf-mlp-rmsprop-tuning.ipynb`](./src/tf-mlp-rmsprop-tuning.ipynb) in the [`src`](./src/) directory for SGD, Adam, and RMSprop, respectively.
+Hyperparameter tuning was performed on the Tensorflow implementation using Weights & Biases Sweeps. We used the Bayesian Optimization algorithm in the Wandb library for hyperparameter search. We tried 3 different optimizers during tuning: SGD with momentum, Adam, and RMSprop. The code for the tuning is available in [`tf-mlp-sgd-tuning.ipynb`](./src/tf-mlp-sgd-tuning.ipynb), [`tf-mlp-adam-tuning.ipynb`](./src/tf-mlp-adam-tuning.ipynb), and [`tf-mlp-rmsprop-tuning.ipynb`](./src/tf-mlp-rmsprop-tuning.ipynb) in the [`src`](./src/) directory for SGD, Adam, and RMSprop, respectively.
 
 During tuning, the network was trained 150 times in total - 50 times with different permutations of hyperparameters for each optimizer. The metrics we monitored during tuning were the training loss, validation loss, training accuracy, and validation accuracy. The goal of the tuning was to minimize the validation loss.
 
@@ -153,7 +153,7 @@ The following table shows the best values for the hyperparameters.
 
 We found that the Adam optimizer converged more smoothly than the other two optimizers. All three optimizers converged to a similar validation loss and accuracy. We chose the Adam optimizer for the final model.
 
-You can find the Sweep report [here](https://api.wandb.ai/links/nsiete23/xwe6x00n).
+You can find the report from every Sweep [here](https://api.wandb.ai/links/nsiete23/xwe6x00n).
 
 ## Implementation
 
