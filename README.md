@@ -280,5 +280,6 @@ Overall, we found that Tensorflow has a more beginner-friendly way of training m
 
 ## References
 
+- [Fashion-MNIST repository](https://github.com/zalandoresearch/fashion-mnist)
 - [Tensorflow Docs](https://tensorflow.org/api_docs/python)
 - [PyTorch Docs](https://pytorch.org/docs/stable/index.html)
